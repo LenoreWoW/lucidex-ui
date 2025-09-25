@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams, useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -26,7 +26,7 @@ import { Component } from '@/types/components';
 import { Component as PreviewComponent } from '@/types';
 import { ComponentPreview } from '@/components/components/ComponentPreview';
 import { ComponentRenderer } from '@/components/components/ComponentRenderer';
-import { PropsPanel } from '@/components/components/PropsPanel';
+import { PropsPanel, PropValue } from '@/components/components/PropsPanel';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
 
 type TabType = 'preview' | 'code' | 'docs' | 'props';
@@ -58,6 +58,7 @@ export default function ComponentDetailPage() {
   const [activeTab, setActiveTab] = useState<TabType>(initialTab);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [propValues, setPropValues] = useState<PropValue>({});
   const { copyToClipboard, isCopied } = useCopyToClipboard();
 
   // Load component data
@@ -72,16 +73,32 @@ export default function ComponentDetailPage() {
       if (!comp) {
         setError('Component not found');
         setComponent(null);
+        setPropValues({});
       } else {
         setComponent(comp);
+        // Initialize prop values with defaults
+        const initialValues: PropValue = {};
+        if (comp.props) {
+          comp.props.forEach(prop => {
+            if (prop.defaultValue !== undefined) {
+              initialValues[prop.name] = prop.defaultValue;
+            }
+          });
+        }
+        setPropValues(initialValues);
       }
-    } catch (err) {
+    } catch {
       setError('Failed to load component');
       setComponent(null);
     } finally {
       setLoading(false);
     }
   }, [componentId]);
+
+  // Handle prop value changes
+  const handlePropValuesChange = useCallback((newValues: PropValue) => {
+    setPropValues(newValues);
+  }, []);
 
   const handleCopyComponentCode = async () => {
     if (!component) return;
@@ -105,7 +122,7 @@ export default function ComponentDetailPage() {
           text: component.description,
           url: window.location.href,
         });
-      } catch (err) {
+      } catch {
         // Fallback to copying URL
         await copyToClipboard(
           window.location.href,
@@ -168,7 +185,7 @@ export default function ComponentDetailPage() {
           <div className="mb-4 text-6xl">❌</div>
           <h1 className="mb-2 text-2xl font-bold">Component Not Found</h1>
           <p className="mb-6 text-muted-foreground">
-            The component "{componentId}" could not be found.
+            The component &quot;{componentId}&quot; could not be found.
           </p>
           <Link
             href="/components"
@@ -307,14 +324,22 @@ export default function ComponentDetailPage() {
       {/* Main Content */}
       <div className="mx-auto max-w-7xl px-4 py-6 lg:px-6">
         {activeTab === 'preview' && (
-          <ComponentPreview component={convertToPreviewComponent(component)} />
+          <ComponentPreview
+            component={convertToPreviewComponent(component)}
+            initialProps={propValues}
+            onPropsChange={handlePropValuesChange}
+          />
         )}
 
         {activeTab === 'code' && (
           <ComponentRenderer
             componentName={component.name}
-            componentCode={component.implementations?.find(impl => impl.framework === 'react')?.code || ''}
-            props={{}}
+            componentCode={
+              component.implementations?.find(
+                impl => impl.framework === 'react'
+              )?.code || ''
+            }
+            props={propValues}
             activeState="default"
             framework="react"
             theme="light"
@@ -468,8 +493,8 @@ export default function ComponentDetailPage() {
           <PropsPanel
             componentName={component.name}
             props={component.props || []}
-            values={{}}
-            onChange={() => {}}
+            values={propValues}
+            onChange={handlePropValuesChange}
           />
         )}
       </div>

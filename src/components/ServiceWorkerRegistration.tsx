@@ -1,7 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
-import { registerServiceWorker, collectPerformanceMetrics, storeMetricsForSync } from '@/lib/serviceWorker';
+import {
+  registerServiceWorker,
+  collectPerformanceMetrics,
+  storeMetricsForSync,
+} from '@/lib/serviceWorker';
 
 export function ServiceWorkerRegistration() {
   useEffect(() => {
@@ -11,17 +15,22 @@ export function ServiceWorkerRegistration() {
 
     try {
       registerServiceWorker({
-        onSuccess: (registration) => {
+        onSuccess: _registration => {
+          // eslint-disable-next-line no-console
           console.log('Service Worker registered successfully');
         },
-        onUpdate: (registration) => {
+        onUpdate: _registration => {
+          // eslint-disable-next-line no-console
           console.log('Service Worker updated');
           // You could show a notification to the user here
         },
-        onError: (error) => {
+        onError: error => {
           if (isDevelopment) {
             // In development, just log the error without throwing
-            console.warn('Service Worker registration failed in development:', error);
+            console.warn(
+              'Service Worker registration failed in development:',
+              error
+            );
           } else {
             // In production, log the error but don't crash
             console.error('Service Worker registration failed:', error);
