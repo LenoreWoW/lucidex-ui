@@ -1,0 +1,60 @@
+{
+  "shadows": {
+    "sm": {
+      "name": "Small Shadow",
+      "description": "Small subtle shadow",
+      "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      "variable": "--shadow-sm",
+      "category": "shadow"
+    },
+    "base": {
+      "name": "Base Shadow",
+      "description": "Default shadow",
+      "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+      "variable": "--shadow-base",
+      "category": "shadow"
+    },
+    "md": {
+      "name": "Medium Shadow",
+      "description": "Medium shadow for cards",
+      "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      "variable": "--shadow-md",
+      "category": "shadow"
+    },
+    "lg": {
+      "name": "Large Shadow",
+      "description": "Large shadow for elevated elements",
+      "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+      "variable": "--shadow-lg",
+      "category": "shadow"
+    },
+    "xl": {
+      "name": "Extra Large Shadow",
+      "description": "Extra large shadow for modals",
+      "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+      "variable": "--shadow-xl",
+      "category": "shadow"
+    },
+    "2xl": {
+      "name": "2X Large Shadow",
+      "description": "Very large shadow for overlays",
+      "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+      "variable": "--shadow-2xl",
+      "category": "shadow"
+    },
+    "inner": {
+      "name": "Inner Shadow",
+      "description": "Inset shadow effect",
+      "value": "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
+      "variable": "--shadow-inner",
+      "category": "shadow"
+    },
+    "none": {
+      "name": "No Shadow",
+      "description": "Remove shadow",
+      "value": "0 0 #0000",
+      "variable": "--shadow-none",
+      "category": "shadow"
+    }
+  }
+}

@@ -1,0 +1,177 @@
+# Getting Started with Lucidex UI Explorer
+
+Welcome to the Lucidex UI Explorer! This comprehensive design system helps you build beautiful, consistent user interfaces across multiple frameworks including React, Next.js, Blazor, HTML, and TypeScript.
+
+## What is Lucidex UI Explorer?
+
+The Lucidex UI Explorer is a modern, framework-agnostic design system that provides:
+
+- **Consistent Design Tokens**: Colors, typography, spacing, and more
+- **Multi-Framework Support**: Components for React, Next.js, Blazor, HTML, and TypeScript
+- **Interactive Examples**: Live code examples and component previews
+- **Theming System**: Light and dark mode support with customizable themes
+- **Accessibility First**: Built with WCAG compliance in mind
+
+## Quick Start
+
+Choose your framework to get started:
+
+<FrameworkTabs>
+  <div data-framework="react">
+    <InstallationSteps
+      title="React Installation"
+      steps={[
+        "npm install @polaris-ui/react",
+        "Import the CSS file in your main component",
+        "Start using components"
+      ]}
+    />
+
+    <CodeExample
+      title="Basic React Usage"
+      language="jsx"
+      code={`import { Button, Card } from '@polaris-ui/react';
+
+import '@polaris-ui/react/styles.css';
+
+function App() {
+return (
+<Card>
+<Button variant="primary">
+Hello World
+</Button>
+</Card>
+);
+}`}
+/>
+
+  </div>
+
+  <div data-framework="nextjs">
+    <InstallationSteps
+      title="Next.js Installation"
+      steps={[
+        "npm install @polaris-ui/nextjs",
+        "Configure your next.config.js",
+        "Import global styles",
+        "Start building"
+      ]}
+    />
+
+    <CodeExample
+      title="Next.js Configuration"
+      language="javascript"
+      code={`// next.config.js
+
+const withPolaris = require('@polaris-ui/nextjs');
+
+module.exports = withPolaris({
+// your next.js config
+});`}
+/>
+
+  </div>
+
+  <div data-framework="blazor">
+    <InstallationSteps
+      title="Blazor Installation"
+      steps={[
+        "dotnet add package PolarisUI.Blazor",
+        "Add CSS reference to index.html",
+        "Register services in Program.cs",
+        "Use components in your .razor files"
+      ]}
+    />
+
+    <CodeExample
+      title="Blazor Component Usage"
+      language="razor"
+      code={`@using PolarisUI.Blazor
+
+<PolarisCard>
+    <PolarisButton Variant="ButtonVariant.Primary">
+        Hello World
+    </PolarisButton>
+</PolarisCard>`}
+    />
+  </div>
+
+  <div data-framework="html">
+    <InstallationSteps
+      title="HTML Installation"
+      steps={[
+        "Include the CDN link in your HTML",
+        "Add the polaris-ui CSS classes",
+        "Use HTML components directly"
+      ]}
+    />
+
+    <CodeExample
+      title="HTML Usage"
+      language="html"
+      code={`<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="https://cdn.polaris-ui.com/v1/polaris.css" rel="stylesheet">
+</head>
+<body>
+    <div class="polaris-card">
+        <button class="polaris-button polaris-button--primary">
+            Hello World
+        </button>
+    </div>
+</body>
+</html>`}
+    />
+  </div>
+
+  <div data-framework="typescript">
+    <InstallationSteps
+      title="TypeScript Installation"
+      steps={[
+        "npm install @polaris-ui/core @polaris-ui/typescript",
+        "Configure your TypeScript project",
+        "Import type definitions",
+        "Use with full type safety"
+      ]}
+    />
+
+    <CodeExample
+      title="TypeScript Usage"
+      language="typescript"
+      code={`import { PolarisTheme, ButtonProps } from '@polaris-ui/typescript';
+
+interface MyComponentProps {
+theme: PolarisTheme;
+buttonProps: ButtonProps;
+}
+
+const MyComponent: React.FC<MyComponentProps> = ({ theme, buttonProps }) => {
+return (
+<button className={theme.button.primary} {...buttonProps}>
+Typed Button
+</button>
+);
+};`}
+/>
+
+  </div>
+</FrameworkTabs>
+
+## Next Steps
+
+Once you've installed Lucidex UI in your preferred framework, explore these areas:
+
+1. **[Installation & Setup](/docs/installation)** - Detailed installation guides for each framework
+2. **[Components](/docs/components)** - Browse all available components
+3. **[Design Tokens](/docs/design-tokens)** - Learn about the design system foundations
+4. **[Theming](/docs/theming)** - Customize the appearance to match your brand
+5. **[Examples](/docs/examples)** - See real-world usage examples
+
+## Need Help?
+
+- 📚 Browse the [full documentation](/docs)
+- 🐛 Report issues on [GitHub](https://github.com/polaris-ui/explorer)
+- 💬 Join our [Discord community](https://discord.gg/polaris-ui)
+- 📧 Contact support at [support@polaris-ui.com](mailto:support@polaris-ui.com)

@@ -1,0 +1,84 @@
+# MDX Test Page
+
+This is a test page to verify that MDX is working correctly.
+
+## Code Example Test
+
+<CodeExample
+  title="Simple React Component"
+  language="jsx"
+  code={`function HelloWorld() {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+      <p>This is a test component.</p>
+    </div>
+  );
+}`}
+/>
+
+## Installation Steps Test
+
+<InstallationSteps
+  title="Test Installation"
+  steps={[
+    "npm install test-package",
+    "Import the component",
+    "Use it in your app"
+  ]}
+/>
+
+## Framework Tabs Test
+
+<FrameworkTabs>
+  <div data-framework="react">
+    ### React Implementation
+
+    This is the React version.
+
+    ```jsx
+    import React from 'react';
+
+    export default function Component() {
+      return <div>React Component</div>;
+    }
+    ```
+  </div>
+
+  <div data-framework="nextjs">
+    ### Next.js Implementation
+
+    This is the Next.js version.
+
+    ```jsx
+    import { NextPage } from 'next';
+
+    const Component: NextPage = () => {
+      return <div>Next.js Component</div>;
+    };
+
+    export default Component;
+    ```
+  </div>
+</FrameworkTabs>
+
+## Regular Markdown
+
+This is regular markdown content that should be styled correctly:
+
+- List item 1
+- List item 2
+- List item 3
+
+> This is a blockquote with some important information.
+
+### Code Block
+
+```javascript
+const message = "MDX is working!";
+console.log(message);
+```
+
+**Bold text** and *italic text* should be styled properly.
+
+The MDX documentation system is now ready to use!

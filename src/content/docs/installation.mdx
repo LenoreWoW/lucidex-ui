@@ -1,0 +1,361 @@
+# Installation & Setup
+
+This guide will walk you through installing and setting up Lucidex UI Explorer in your project, regardless of which framework you're using.
+
+## Prerequisites
+
+Before installing Lucidex UI, make sure you have:
+
+- **Node.js** 16.x or later (for React/Next.js projects)
+- **.NET 6.0** or later (for Blazor projects)
+- A modern browser that supports ES6+ features
+
+## Framework-Specific Installation
+
+### React
+
+For React applications, install the core React package:
+
+<InstallationSteps
+  title="React Installation"
+  steps={[
+    'npm install @polaris-ui/react',
+    'npm install @polaris-ui/themes (optional, for additional themes)',
+    'Import the base styles',
+    'Configure your app',
+  ]}
+/>
+
+<CodeExample
+  title="App.jsx Setup"
+  language="jsx"
+  code={`import React from 'react';
+import { PolarisProvider } from '@polaris-ui/react';
+import '@polaris-ui/react/styles.css';
+
+function App() {
+return (
+<PolarisProvider theme="light">
+<div className="App">
+{/* Your app content */}
+</div>
+</PolarisProvider>
+);
+}
+
+export default App;`}
+/>
+
+### Next.js
+
+Next.js projects get additional optimizations and features:
+
+<InstallationSteps
+  title="Next.js Installation"
+  steps={[
+    'npm install @polaris-ui/nextjs @polaris-ui/react',
+    'Configure your next.config.js file',
+    'Set up the global styles',
+    'Add the provider to _app.js',
+  ]}
+/>
+
+<CodeExample
+  title="next.config.js"
+  language="javascript"
+  code={`const withPolaris = require('@polaris-ui/nextjs');
+
+/\*_ @type {import('next').NextConfig} _/
+const nextConfig = {
+experimental: {
+appDir: true,
+},
+};
+
+module.exports = withPolaris(nextConfig);`}
+/>
+
+<CodeExample
+  title="_app.js or layout.tsx"
+  language="jsx"
+  code={`import { PolarisProvider } from '@polaris-ui/react';
+import '@polaris-ui/react/styles.css';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <PolarisProvider>
+          {children}
+        </PolarisProvider>
+      </body>
+    </html>
+  );
+}`}
+/>
+
+### Blazor Server & WebAssembly
+
+For Blazor applications:
+
+<InstallationSteps
+  title="Blazor Installation"
+  steps={[
+    'dotnet add package PolarisUI.Blazor',
+    'Add CSS reference to index.html or _Host.cshtml',
+    'Register services in Program.cs',
+    'Add using statement to _Imports.razor',
+  ]}
+/>
+
+<CodeExample
+  title="Program.cs"
+  language="csharp"
+  code={`using PolarisUI.Blazor;
+
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+
+// Register Lucidex UI services
+builder.Services.AddPolarisUI();
+
+await builder.Build().RunAsync();`}
+/>
+
+<CodeExample
+  title="index.html"
+  language="html"
+  code={`<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>My Blazor App</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="_content/PolarisUI.Blazor/polaris.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">Loading...</div>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+</html>`}
+/>
+
+### HTML/CSS
+
+For vanilla HTML projects:
+
+<InstallationSteps
+  title="HTML Installation"
+  steps={[
+    'Include the CDN link in your HTML head',
+    'Optionally include the JavaScript for interactive components',
+    'Start using CSS classes',
+  ]}
+/>
+
+<CodeExample
+  title="HTML Setup"
+  language="html"
+  code={`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App</title>
+
+    <!-- Lucidex UI CSS -->
+    <link href="https://cdn.polaris-ui.com/v1/polaris.min.css" rel="stylesheet">
+
+    <!-- Optional: Interactive components -->
+    <script src="https://cdn.polaris-ui.com/v1/polaris.min.js" defer></script>
+
+</head>
+<body>
+    <!-- Your content here -->
+</body>
+</html>`}
+/>
+
+### TypeScript
+
+For TypeScript projects, install the type definitions:
+
+<InstallationSteps
+  title="TypeScript Setup"
+  steps={[
+    'npm install @polaris-ui/types',
+    'Configure your tsconfig.json',
+    'Import types in your files',
+  ]}
+/>
+
+<CodeExample
+  title="tsconfig.json"
+  language="json"
+  code={`{
+  "compilerOptions": {
+    "types": ["@polaris-ui/types"],
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "strict": true
+  },
+  "include": [
+    "src/**/*",
+    "@polaris-ui/types"
+  ]
+}`}
+/>
+
+## Customization
+
+### Custom Theme Configuration
+
+<CodeExample
+  title="Custom Theme"
+  language="javascript"
+  code={`import { createTheme } from '@polaris-ui/react';
+
+const customTheme = createTheme({
+colors: {
+primary: {
+50: '#f0f9ff',
+500: '#3b82f6',
+900: '#1e3a8a',
+},
+},
+fonts: {
+sans: ['Inter', 'system-ui', 'sans-serif'],
+},
+spacing: {
+xs: '0.5rem',
+sm: '1rem',
+md: '1.5rem',
+lg: '2rem',
+xl: '3rem',
+},
+});
+
+// Use in your provider
+
+<PolarisProvider theme={customTheme}>
+  <App />
+</PolarisProvider>
+`} />
+
+### CSS Custom Properties
+
+You can also customize using CSS custom properties:
+
+<CodeExample
+  title="Custom CSS Properties"
+  language="css"
+  code={`:root {
+  --polaris-color-primary-500: #10b981;
+  --polaris-color-secondary-500: #8b5cf6;
+  --polaris-font-family-sans: 'Poppins', system-ui, sans-serif;
+  --polaris-border-radius-base: 12px;
+  --polaris-shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+--polaris-color-background: #111827;
+--polaris-color-surface: #1f2937;
+--polaris-color-text: #f9fafb;
+}`}
+/>
+
+## Verification
+
+To verify your installation is working correctly, create a simple test component:
+
+<FrameworkTabs>
+  <div data-framework="react">
+    <CodeExample
+      title="Test Component"
+      language="jsx"
+      code={`import { Button, Card } from '@polaris-ui/react';
+
+function TestComponent() {
+return (
+<Card padding="lg">
+<h2>Installation Test</h2>
+<Button variant="primary" onClick={() => alert('Success!')}>
+Test Button
+</Button>
+</Card>
+);
+}`}
+/>
+
+  </div>
+
+<div data-framework="blazor">
+  <CodeExample
+    title="Test Component"
+    language="razor"
+    code={`<PolarisCard Padding="PaddingSize.Large">
+    <h2>Installation Test</h2>
+    <PolarisButton Variant="ButtonVariant.Primary"
+                   OnClick="@(() => Console.WriteLine("Success!"))">
+        Test Button
+    </PolarisButton>
+</PolarisCard>`}
+  />
+</div>
+
+  <div data-framework="html">
+    <CodeExample
+      title="Test HTML"
+      language="html"
+      code={`<div class="polaris-card polaris-card--padding-lg">
+    <h2>Installation Test</h2>
+    <button class="polaris-button polaris-button--primary"
+            onclick="alert('Success!')">
+        Test Button
+    </button>
+</div>`}
+    />
+  </div>
+</FrameworkTabs>
+
+## Troubleshooting
+
+### Common Issues
+
+**Styles not loading**
+
+- Ensure you've imported the CSS file correctly
+- Check that the file path is correct for your bundler
+- Verify there are no conflicting CSS rules
+
+**Components not rendering**
+
+- Make sure you've wrapped your app with `PolarisProvider`
+- Check for JavaScript errors in the browser console
+- Verify all required dependencies are installed
+
+**TypeScript errors**
+
+- Install `@polaris-ui/types` package
+- Add types to your `tsconfig.json`
+- Restart your TypeScript language server
+
+### Getting Help
+
+If you're still having issues:
+
+1. Check our [troubleshooting guide](/docs/troubleshooting)
+2. Search [existing issues](https://github.com/polaris-ui/explorer/issues)
+3. Join our [Discord community](https://discord.gg/polaris-ui)
+4. Create a [new issue](https://github.com/polaris-ui/explorer/issues/new) with details
+
+## Next Steps
+
+Now that you have Lucidex UI installed:
+
+- Explore [Components](/docs/components) to see what's available
+- Learn about [Design Tokens](/docs/design-tokens) for consistent styling
+- Check out [Theming](/docs/theming) to customize the look and feel
+- Browse [Examples](/docs/examples) for inspiration

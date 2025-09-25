@@ -1,0 +1,268 @@
+{
+  "colors": {
+    "semantic": {
+      "background": {
+        "name": "Background",
+        "description": "Primary background color",
+        "value": {
+          "light": "hsl(0 0% 100%)",
+          "dark": "hsl(0 0% 7%)"
+        },
+        "variable": "--background",
+        "category": "semantic"
+      },
+      "foreground": {
+        "name": "Foreground",
+        "description": "Primary text color",
+        "value": {
+          "light": "hsl(0 0% 9%)",
+          "dark": "hsl(0 0% 98%)"
+        },
+        "variable": "--foreground",
+        "category": "semantic"
+      },
+      "primary": {
+        "name": "Primary",
+        "description": "Primary brand color based on Qatar maroon",
+        "value": {
+          "light": "hsl(0 65% 51%)",
+          "dark": "hsl(0 65% 60%)"
+        },
+        "variable": "--primary",
+        "category": "semantic"
+      },
+      "primary-foreground": {
+        "name": "Primary Foreground",
+        "description": "Text color for primary backgrounds",
+        "value": {
+          "light": "hsl(0 0% 98%)",
+          "dark": "hsl(0 0% 9%)"
+        },
+        "variable": "--primary-foreground",
+        "category": "semantic"
+      },
+      "secondary": {
+        "name": "Secondary",
+        "description": "Secondary background color",
+        "value": {
+          "light": "hsl(240 4.8% 95.9%)",
+          "dark": "hsl(0 0% 15%)"
+        },
+        "variable": "--secondary",
+        "category": "semantic"
+      },
+      "secondary-foreground": {
+        "name": "Secondary Foreground",
+        "description": "Text color for secondary backgrounds",
+        "value": {
+          "light": "hsl(0 0% 9%)",
+          "dark": "hsl(0 0% 98%)"
+        },
+        "variable": "--secondary-foreground",
+        "category": "semantic"
+      },
+      "muted": {
+        "name": "Muted",
+        "description": "Muted background color",
+        "value": {
+          "light": "hsl(240 4.8% 95.9%)",
+          "dark": "hsl(0 0% 15%)"
+        },
+        "variable": "--muted",
+        "category": "semantic"
+      },
+      "muted-foreground": {
+        "name": "Muted Foreground",
+        "description": "Muted text color",
+        "value": {
+          "light": "hsl(240 3.8% 46.1%)",
+          "dark": "hsl(240 5% 64.9%)"
+        },
+        "variable": "--muted-foreground",
+        "category": "semantic"
+      },
+      "accent": {
+        "name": "Accent",
+        "description": "Accent color for highlights",
+        "value": {
+          "light": "hsl(240 4.8% 95.9%)",
+          "dark": "hsl(0 0% 15%)"
+        },
+        "variable": "--accent",
+        "category": "semantic"
+      },
+      "accent-foreground": {
+        "name": "Accent Foreground",
+        "description": "Text color for accent backgrounds",
+        "value": {
+          "light": "hsl(0 0% 9%)",
+          "dark": "hsl(0 0% 98%)"
+        },
+        "variable": "--accent-foreground",
+        "category": "semantic"
+      },
+      "destructive": {
+        "name": "Destructive",
+        "description": "Destructive action color",
+        "value": {
+          "light": "hsl(0 84.2% 60.2%)",
+          "dark": "hsl(0 62.8% 30.6%)"
+        },
+        "variable": "--destructive",
+        "category": "semantic"
+      },
+      "destructive-foreground": {
+        "name": "Destructive Foreground",
+        "description": "Text color for destructive backgrounds",
+        "value": {
+          "light": "hsl(0 0% 98%)",
+          "dark": "hsl(0 0% 98%)"
+        },
+        "variable": "--destructive-foreground",
+        "category": "semantic"
+      },
+      "border": {
+        "name": "Border",
+        "description": "Border color",
+        "value": {
+          "light": "hsl(240 5.9% 90%)",
+          "dark": "hsl(0 0% 20%)"
+        },
+        "variable": "--border",
+        "category": "semantic"
+      },
+      "input": {
+        "name": "Input",
+        "description": "Input field border color",
+        "value": {
+          "light": "hsl(240 5.9% 90%)",
+          "dark": "hsl(0 0% 20%)"
+        },
+        "variable": "--input",
+        "category": "semantic"
+      },
+      "ring": {
+        "name": "Focus Ring",
+        "description": "Focus ring color",
+        "value": {
+          "light": "hsl(0 65% 51%)",
+          "dark": "hsl(0 65% 60%)"
+        },
+        "variable": "--ring",
+        "category": "semantic"
+      },
+      "card": {
+        "name": "Card",
+        "description": "Card background color",
+        "value": {
+          "light": "hsl(0 0% 100%)",
+          "dark": "hsl(0 0% 9%)"
+        },
+        "variable": "--card",
+        "category": "semantic"
+      },
+      "card-foreground": {
+        "name": "Card Foreground",
+        "description": "Text color for card backgrounds",
+        "value": {
+          "light": "hsl(0 0% 9%)",
+          "dark": "hsl(0 0% 98%)"
+        },
+        "variable": "--card-foreground",
+        "category": "semantic"
+      },
+      "popover": {
+        "name": "Popover",
+        "description": "Popover background color",
+        "value": {
+          "light": "hsl(0 0% 100%)",
+          "dark": "hsl(0 0% 9%)"
+        },
+        "variable": "--popover",
+        "category": "semantic"
+      },
+      "popover-foreground": {
+        "name": "Popover Foreground",
+        "description": "Text color for popover backgrounds",
+        "value": {
+          "light": "hsl(0 0% 9%)",
+          "dark": "hsl(0 0% 98%)"
+        },
+        "variable": "--popover-foreground",
+        "category": "semantic"
+      }
+    },
+    "qgba": {
+      "maroon": {
+        "name": "Qatar Maroon",
+        "description": "Official Qatar maroon color from the Qatar GBA design system",
+        "value": {
+          "light": "hsl(0 65% 51%)",
+          "dark": "hsl(0 65% 60%)"
+        },
+        "hex": {
+          "light": "#8B1538",
+          "dark": "#A5476A"
+        },
+        "variable": "--qgba-maroon",
+        "category": "brand"
+      },
+      "gold": {
+        "name": "Qatar Gold",
+        "description": "Official Qatar gold color from the Qatar GBA design system",
+        "value": {
+          "light": "hsl(45 100% 50%)",
+          "dark": "hsl(45 95% 55%)"
+        },
+        "hex": {
+          "light": "#FFD700",
+          "dark": "#FFDC33"
+        },
+        "variable": "--qgba-gold",
+        "category": "brand"
+      },
+      "navy": {
+        "name": "Qatar Navy",
+        "description": "Official Qatar navy color from the Qatar GBA design system",
+        "value": {
+          "light": "hsl(215 58% 24%)",
+          "dark": "hsl(215 58% 35%)"
+        },
+        "hex": {
+          "light": "#1E3A5F",
+          "dark": "#2A4F7A"
+        },
+        "variable": "--qgba-navy",
+        "category": "brand"
+      },
+      "light-gray": {
+        "name": "Light Gray",
+        "description": "Light gray color from the Qatar GBA design system",
+        "value": {
+          "light": "hsl(0 0% 94%)",
+          "dark": "hsl(0 0% 20%)"
+        },
+        "hex": {
+          "light": "#F0F0F0",
+          "dark": "#333333"
+        },
+        "variable": "--qgba-light-gray",
+        "category": "neutral"
+      },
+      "dark-gray": {
+        "name": "Dark Gray",
+        "description": "Dark gray color from the Qatar GBA design system",
+        "value": {
+          "light": "hsl(0 0% 33%)",
+          "dark": "hsl(0 0% 70%)"
+        },
+        "hex": {
+          "light": "#545454",
+          "dark": "#B3B3B3"
+        },
+        "variable": "--qgba-dark-gray",
+        "category": "neutral"
+      }
+    }
+  }
+}

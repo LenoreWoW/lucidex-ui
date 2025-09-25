@@ -21,7 +21,7 @@ interface NavMenuProps {
 interface ComponentGroup {
   id: string;
   label: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<any>;
   components: ComponentItem[];
 }
 

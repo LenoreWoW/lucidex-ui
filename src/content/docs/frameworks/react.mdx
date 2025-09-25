@@ -1,0 +1,553 @@
+# React Framework Guide
+
+Learn how to use Lucidex UI components in your React applications with optimal performance and developer experience.
+
+## Installation
+
+<InstallationSteps
+  title="React Installation"
+  steps={[
+    'npm install @polaris-ui/react',
+    'Import CSS in your root component',
+    'Wrap your app with PolarisProvider',
+    'Start using components',
+  ]}
+/>
+
+## Provider Setup
+
+The `PolarisProvider` is essential for theming, accessibility, and component context:
+
+<CodeExample
+  title="App.jsx - Provider Setup"
+  language="jsx"
+  code={`import React from 'react';
+import { PolarisProvider } from '@polaris-ui/react';
+import '@polaris-ui/react/styles.css';
+
+function App() {
+return (
+<PolarisProvider
+      theme="light"
+      colorScheme="blue"
+      locale="en"
+    >
+<Router>
+<Routes>
+{/* Your routes */}
+</Routes>
+</Router>
+</PolarisProvider>
+);
+}`}
+/>
+
+## Component Usage
+
+### Basic Components
+
+<CodeExample
+  title="Basic Button Usage"
+  language="jsx"
+  code={`import { Button, Card, Stack, Text } from '@polaris-ui/react';
+
+function MyComponent() {
+return (
+<Card>
+<Stack spacing="md">
+<Text variant="heading">Welcome</Text>
+<Text>This is a card with some content.</Text>
+<Stack direction="horizontal" spacing="sm">
+<Button variant="primary">Primary Action</Button>
+<Button variant="secondary">Secondary</Button>
+</Stack>
+</Stack>
+</Card>
+);
+}`}
+/>
+
+### Form Components
+
+<CodeExample
+  title="Form Components"
+  language="jsx"
+  code={`import {
+  TextField,
+  Select,
+  Checkbox,
+  Button,
+  Form,
+  FormField
+} from '@polaris-ui/react';
+
+function ContactForm() {
+const [formData, setFormData] = useState({
+name: '',
+email: '',
+category: 'general',
+subscribe: false
+});
+
+const handleSubmit = (event) => {
+event.preventDefault();
+console.log('Form submitted:', formData);
+};
+
+return (
+<Form onSubmit={handleSubmit}>
+<Stack spacing="md">
+<FormField label="Name" required>
+<TextField
+value={formData.name}
+onChange={(value) => setFormData({...formData, name: value})}
+placeholder="Enter your name"
+/>
+</FormField>
+
+        <FormField label="Email" required>
+          <TextField
+            type="email"
+            value={formData.email}
+            onChange={(value) => setFormData({...formData, email: value})}
+            placeholder="Enter your email"
+          />
+        </FormField>
+
+        <FormField label="Category">
+          <Select
+            value={formData.category}
+            onChange={(value) => setFormData({...formData, category: value})}
+            options={[
+              { label: 'General', value: 'general' },
+              { label: 'Support', value: 'support' },
+              { label: 'Sales', value: 'sales' }
+            ]}
+          />
+        </FormField>
+
+        <Checkbox
+          checked={formData.subscribe}
+          onChange={(checked) => setFormData({...formData, subscribe: checked})}
+          label="Subscribe to newsletter"
+        />
+
+        <Button type="submit" variant="primary">
+          Submit
+        </Button>
+      </Stack>
+    </Form>
+
+);
+}`}
+/>
+
+## Hooks
+
+Lucidex UI provides several custom hooks for common patterns:
+
+### useTheme
+
+<CodeExample
+  title="Theme Hook"
+  language="jsx"
+  code={`import { useTheme } from '@polaris-ui/react';
+
+function ThemedComponent() {
+const { theme, toggleTheme, setTheme } = useTheme();
+
+return (
+<div>
+<p>Current theme: {theme}</p>
+<Button onClick={toggleTheme}>
+Switch to {theme === 'light' ? 'dark' : 'light'}
+</Button>
+<Button onClick={() => setTheme('auto')}>
+Use system theme
+</Button>
+</div>
+);
+}`}
+/>
+
+### useBreakpoint
+
+<CodeExample
+  title="Responsive Hook"
+  language="jsx"
+  code={`import { useBreakpoint } from '@polaris-ui/react';
+
+function ResponsiveComponent() {
+const { isDesktop, isTablet, isMobile, breakpoint } = useBreakpoint();
+
+return (
+<div>
+<Stack
+direction={isDesktop ? 'horizontal' : 'vertical'}
+spacing={isDesktop ? 'lg' : 'md'} >
+<Card flex={isDesktop ? '2' : undefined}>
+<Text>Main content</Text>
+</Card>
+<Card flex={isDesktop ? '1' : undefined}>
+<Text>Sidebar</Text>
+</Card>
+</Stack>
+
+      {isMobile && (
+        <Text variant="caption">
+          Optimized for mobile
+        </Text>
+      )}
+    </div>
+
+);
+}`}
+/>
+
+### useForm
+
+<CodeExample
+  title="Form Management Hook"
+  language="jsx"
+  code={`import { useForm } from '@polaris-ui/react';
+
+function LoginForm() {
+const {
+values,
+errors,
+touched,
+handleChange,
+handleBlur,
+handleSubmit,
+isSubmitting
+} = useForm({
+initialValues: {
+email: '',
+password: ''
+},
+validate: (values) => {
+const errors = {};
+if (!values.email) {
+errors.email = 'Email is required';
+}
+if (!values.password) {
+errors.password = 'Password is required';
+}
+return errors;
+},
+onSubmit: async (values) => {
+await loginUser(values);
+}
+});
+
+return (
+<form onSubmit={handleSubmit}>
+<Stack spacing="md">
+<FormField
+label="Email"
+error={touched.email && errors.email} >
+<TextField
+name="email"
+type="email"
+value={values.email}
+onChange={handleChange}
+onBlur={handleBlur}
+error={touched.email && errors.email}
+/>
+</FormField>
+
+        <FormField
+          label="Password"
+          error={touched.password && errors.password}
+        >
+          <TextField
+            name="password"
+            type="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.password && errors.password}
+          />
+        </FormField>
+
+        <Button
+          type="submit"
+          variant="primary"
+          loading={isSubmitting}
+        >
+          Sign In
+        </Button>
+      </Stack>
+    </form>
+
+);
+}`}
+/>
+
+## Performance Optimization
+
+### Code Splitting
+
+<CodeExample
+  title="Lazy Component Loading"
+  language="jsx"
+  code={`import { lazy, Suspense } from 'react';
+import { LoadingSpinner } from '@polaris-ui/react';
+
+// Lazy load heavy components
+const DataTable = lazy(() => import('./DataTable'));
+const Chart = lazy(() => import('./Chart'));
+
+function Dashboard() {
+return (
+<div>
+<h1>Dashboard</h1>
+
+      <Suspense fallback={<LoadingSpinner size="large" />}>
+        <DataTable />
+      </Suspense>
+
+      <Suspense fallback={<LoadingSpinner size="large" />}>
+        <Chart />
+      </Suspense>
+    </div>
+
+);
+}`}
+/>
+
+### Memoization
+
+<CodeExample
+  title="Component Memoization"
+  language="jsx"
+  code={`import { memo, useMemo, useCallback } from 'react';
+import { Button, List } from '@polaris-ui/react';
+
+const ExpensiveListItem = memo(({ item, onUpdate }) => {
+return (
+<div>
+<Text>{item.name}</Text>
+<Button onClick={() => onUpdate(item.id)}>
+Update
+</Button>
+</div>
+);
+});
+
+function OptimizedList({ items, onItemUpdate }) {
+// Memoize filtered items
+const filteredItems = useMemo(() => {
+return items.filter(item => item.isActive);
+}, [items]);
+
+// Memoize callback to prevent child re-renders
+const handleUpdate = useCallback((id) => {
+onItemUpdate(id);
+}, [onItemUpdate]);
+
+return (
+<List>
+{filteredItems.map(item => (
+<ExpensiveListItem
+          key={item.id}
+          item={item}
+          onUpdate={handleUpdate}
+        />
+))}
+</List>
+);
+}`}
+/>
+
+## TypeScript Support
+
+Full TypeScript support with excellent type inference:
+
+<CodeExample
+  title="TypeScript Components"
+  language="typescript"
+  code={`import { FC } from 'react';
+import { Button, ButtonProps, Card } from '@polaris-ui/react';
+
+interface UserCardProps {
+user: {
+id: string;
+name: string;
+email: string;
+role: 'admin' | 'user' | 'guest';
+};
+onEdit?: () => void;
+onDelete?: () => void;
+variant?: 'default' | 'compact';
+}
+
+const UserCard: FC<UserCardProps> = ({
+user,
+onEdit,
+onDelete,
+variant = 'default'
+}) => {
+const buttonProps: Partial<ButtonProps> = {
+size: variant === 'compact' ? 'sm' : 'md',
+};
+
+return (
+<Card padding={variant === 'compact' ? 'sm' : 'md'}>
+<Stack spacing="sm">
+<Text variant="heading">{user.name}</Text>
+<Text variant="body">{user.email}</Text>
+<Badge variant={user.role === 'admin' ? 'success' : 'default'}>
+{user.role}
+</Badge>
+
+        {(onEdit || onDelete) && (
+          <Stack direction="horizontal" spacing="sm">
+            {onEdit && (
+              <Button {...buttonProps} onClick={onEdit}>
+                Edit
+              </Button>
+            )}
+            {onDelete && (
+              <Button
+                {...buttonProps}
+                variant="destructive"
+                onClick={onDelete}
+              >
+                Delete
+              </Button>
+            )}
+          </Stack>
+        )}
+      </Stack>
+    </Card>
+
+);
+};
+
+export default UserCard;`}
+/>
+
+## Testing
+
+### Component Testing with React Testing Library
+
+<CodeExample
+  title="Component Tests"
+  language="javascript"
+  code={`import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { PolarisProvider } from '@polaris-ui/react';
+import UserCard from './UserCard';
+
+const TestWrapper = ({ children }) => (
+
+<PolarisProvider theme="light">{children}</PolarisProvider>
+);
+
+const mockUser = {
+id: '1',
+name: 'John Doe',
+email: 'john@example.com',
+role: 'admin'
+};
+
+describe('UserCard', () => {
+it('renders user information correctly', () => {
+render(
+<UserCard user={mockUser} />,
+{ wrapper: TestWrapper }
+);
+
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
+    expect(screen.getByText('john@example.com')).toBeInTheDocument();
+    expect(screen.getByText('admin')).toBeInTheDocument();
+
+});
+
+it('calls onEdit when edit button is clicked', async () => {
+const onEdit = jest.fn();
+
+    render(
+      <UserCard user={mockUser} onEdit={onEdit} />,
+      { wrapper: TestWrapper }
+    );
+
+    fireEvent.click(screen.getByText('Edit'));
+
+    await waitFor(() => {
+      expect(onEdit).toHaveBeenCalledTimes(1);
+    });
+
+});
+});`}
+/>
+
+## Best Practices
+
+1. **Use the Provider**: Always wrap your app with `PolarisProvider`
+2. **Leverage Hooks**: Use built-in hooks for common patterns
+3. **Optimize Performance**: Use memo, useMemo, and useCallback when needed
+4. **Type Safety**: Use TypeScript for better development experience
+5. **Consistent Spacing**: Use the Stack component for consistent layouts
+6. **Semantic HTML**: Components render semantic HTML by default
+
+## Common Patterns
+
+### Modal with Form
+
+<CodeExample
+  title="Modal with Form Pattern"
+  language="jsx"
+  code={`function EditUserModal({ user, isOpen, onClose, onSave }) {
+  const [formData, setFormData] = useState(user);
+
+const handleSave = async () => {
+await onSave(formData);
+onClose();
+};
+
+return (
+<Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Edit User"
+      size="md"
+    >
+<Modal.Body>
+<Stack spacing="md">
+<FormField label="Name">
+<TextField
+value={formData.name}
+onChange={(value) => setFormData({...formData, name: value})}
+/>
+</FormField>
+<FormField label="Email">
+<TextField
+type="email"
+value={formData.email}
+onChange={(value) => setFormData({...formData, email: value})}
+/>
+</FormField>
+</Stack>
+</Modal.Body>
+<Modal.Footer>
+<Stack direction="horizontal" spacing="sm" justify="end">
+<Button variant="secondary" onClick={onClose}>
+Cancel
+</Button>
+<Button variant="primary" onClick={handleSave}>
+Save Changes
+</Button>
+</Stack>
+</Modal.Footer>
+</Modal>
+);
+}`}
+/>
+
+## Next Steps
+
+- Explore [Next.js Integration](/docs/frameworks/nextjs) for SSR support
+- Learn about [Component Customization](/docs/customization)
+- Check out [Advanced Patterns](/docs/patterns)
+- Browse [React Examples](/docs/examples/react)

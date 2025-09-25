@@ -1,0 +1,377 @@
+/* Accessibility-focused styles for the Lucidex UI Explorer */
+
+/* ===== SCREEN READER UTILITIES ===== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+.focus-within\:not-sr-only:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ===== FOCUS INDICATORS ===== */
+
+/* High-contrast focus ring for all focusable elements */
+*:focus {
+  outline: 2px solid var(--focus-ring-color, #C9A96E);
+  outline-offset: 2px;
+}
+
+/* Custom focus ring colors for different themes */
+:root {
+  --focus-ring-color: #C9A96E; /* qgba-gold */
+  --focus-ring-offset: 2px;
+  --focus-ring-width: 2px;
+}
+
+[data-theme="dark"] {
+  --focus-ring-color: #E5D5B7;
+}
+
+/* Enhanced focus indicators for interactive elements */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  box-shadow: 0 0 0 calc(var(--focus-ring-width) + var(--focus-ring-offset)) rgba(201, 169, 110, 0.2);
+}
+
+/* Focus indicators for custom components */
+[role="button"]:focus,
+[role="link"]:focus,
+[role="tab"]:focus,
+[role="menuitem"]:focus,
+[role="option"]:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ===== FOCUS TRAPPING ===== */
+
+/* Styles for focus trap containers */
+.focus-trap {
+  position: relative;
+}
+
+.focus-trap-active {
+  /* Prevent scrolling when focus trap is active */
+  overflow: hidden;
+}
+
+/* ===== HIGH CONTRAST SUPPORT ===== */
+
+@media (prefers-contrast: high) {
+  /* Enhanced contrast for high contrast mode */
+  *:focus {
+    outline-width: 3px;
+    outline-color: Highlight;
+  }
+
+  button,
+  [role="button"] {
+    border: 2px solid ButtonText;
+  }
+
+  a,
+  [role="link"] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Remove animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep focus transitions for accessibility */
+  *:focus {
+    transition: outline 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+}
+
+/* ===== KEYBOARD NAVIGATION HELPERS ===== */
+
+/* Visual indicator for keyboard navigation */
+.keyboard-user *:focus {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Hide focus rings for mouse users */
+.mouse-user *:focus {
+  outline: none;
+}
+
+.mouse-user button:focus,
+.mouse-user a:focus,
+.mouse-user input:focus,
+.mouse-user select:focus,
+.mouse-user textarea:focus {
+  box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.3);
+}
+
+/* ===== SKIP LINKS ===== */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--focus-ring-color);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* ===== LIVE REGIONS ===== */
+
+[aria-live] {
+  /* Ensure live regions are invisible but present */
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ===== FORM ACCESSIBILITY ===== */
+
+/* Visual indicators for required fields */
+[aria-required="true"]::after,
+.required::after {
+  content: " *";
+  color: #DC2626;
+  font-weight: bold;
+}
+
+/* Error states */
+[aria-invalid="true"] {
+  border-color: #DC2626 !important;
+  box-shadow: 0 0 0 1px #DC2626;
+}
+
+[aria-invalid="true"]:focus {
+  outline-color: #DC2626;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+}
+
+/* Error messages */
+.error-message {
+  color: #DC2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+[role="alert"] {
+  color: #DC2626;
+  font-weight: 600;
+}
+
+/* ===== COMPONENT-SPECIFIC ACCESSIBILITY ===== */
+
+/* Modal/Dialog accessibility */
+[role="dialog"],
+[role="alertdialog"] {
+  /* Ensure modals are properly positioned */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+}
+
+/* Overlay for modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+}
+
+/* Tab panels */
+[role="tabpanel"] {
+  outline: none;
+}
+
+[role="tabpanel"]:focus {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* Menu accessibility */
+[role="menu"],
+[role="menubar"] {
+  outline: none;
+}
+
+[role="menuitem"]:focus,
+[role="menuitemcheckbox"]:focus,
+[role="menuitemradio"]:focus {
+  background-color: rgba(201, 169, 110, 0.1);
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* Combobox accessibility */
+[role="combobox"][aria-expanded="true"] {
+  border-color: var(--focus-ring-color);
+}
+
+/* ===== PRINT ACCESSIBILITY ===== */
+
+@media print {
+  /* Ensure focus indicators are visible in print */
+  *:focus {
+    outline: 2px solid black !important;
+  }
+
+  /* Show URLs for links in print */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Hide skip links in print */
+  .skip-link {
+    display: none;
+  }
+}
+
+/* ===== BROWSER-SPECIFIC FIXES ===== */
+
+/* Firefox specific fixes */
+@-moz-document url-prefix() {
+  /* Fix for Firefox focus outline */
+  button::-moz-focus-inner {
+    border: 0;
+  }
+
+  /* Better focus visibility in Firefox */
+  *:focus {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 1px;
+  }
+}
+
+/* Safari specific fixes */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    /* Safari-specific focus styles */
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline-offset: 1px;
+    }
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Force visibility for testing */
+.force-visible {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  clip: auto !important;
+  overflow: visible !important;
+}
+
+/* Disable focus ring when needed */
+.no-focus-ring:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Enhanced focus ring */
+.enhanced-focus:focus {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(201, 169, 110, 0.3);
+}
+
+/* Focus within utility */
+.focus-within-ring:focus-within {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* ===== DARK MODE ADJUSTMENTS ===== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --focus-ring-color: #E5D5B7;
+  }
+
+  [aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.3);
+  }
+
+  .error-message,
+  [role="alert"] {
+    color: #F87171;
+  }
+}
+
+/* ===== ANIMATION RESPECT ===== */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Smooth focus transitions for users who don't prefer reduced motion */
+  *:focus {
+    transition: outline-offset 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  /* Skip link animation */
+  .skip-link {
+    transition: top 0.2s ease-out;
+  }
+}

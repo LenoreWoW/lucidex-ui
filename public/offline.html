@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Lucidex UI</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d3748;
+        }
+
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: #e53e3e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .offline-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+
+        .offline-message {
+            font-size: 1.125rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .retry-button {
+            background: #3182ce;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .retry-button:hover {
+            background: #2c5aa0;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 2rem 0;
+            padding-left: 1rem;
+        }
+
+        .features-list li {
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: #d69e2e;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            }
+
+            .offline-container {
+                background: #2d3748;
+                color: #f7fafc;
+            }
+
+            .offline-title {
+                color: #f7fafc;
+            }
+
+            .offline-message,
+            .features-list li {
+                color: #e2e8f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="logo">LUCIDEX UI</div>
+
+        <div class="offline-icon">
+            📡
+        </div>
+
+        <h1 class="offline-title">You're Offline</h1>
+
+        <p class="offline-message">
+            It looks like you've lost your internet connection. But don't worry, we've cached some content for you to explore!
+        </p>
+
+        <div class="features-list">
+            <p><strong>What you can still do:</strong></p>
+            <ul>
+                <li>• Browse cached components and templates</li>
+                <li>• View design tokens and guidelines</li>
+                <li>• Explore previously visited pages</li>
+                <li>• Copy code snippets you've seen before</li>
+            </ul>
+        </div>
+
+        <button class="retry-button" onclick="retryConnection()">
+            Try Again
+        </button>
+
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: #718096;">
+            Once you're back online, all features will be available again.
+        </p>
+    </div>
+
+    <script>
+        function retryConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            } else {
+                alert('Still no internet connection. Please check your network and try again.');
+            }
+        }
+
+        // Listen for online event
+        window.addEventListener('online', function() {
+            // Show a notification that we're back online
+            const button = document.querySelector('.retry-button');
+            button.textContent = 'Back Online! Click to Refresh';
+            button.style.background = '#38a169';
+        });
+
+        // Update UI based on online status
+        if (navigator.onLine) {
+            document.querySelector('.retry-button').textContent = 'Refresh Page';
+        }
+    </script>
+</body>
+</html>

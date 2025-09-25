@@ -3,6 +3,7 @@
 import React from 'react';
 import { Menu, Code2, Eye, Settings, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { PreviewSystem } from '@/components/preview';
 
 interface ContentAreaProps {
   selectedComponent: string | null;
@@ -77,13 +78,15 @@ export function ContentArea({
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-hidden">
         {children || (
-          <div className="flex h-full flex-col items-center justify-center p-8">
+          <div className="h-full">
             {selectedComponent ? (
               <ComponentPreview component={selectedComponent} />
             ) : (
-              <WelcomeScreen />
+              <div className="flex h-full flex-col items-center justify-center p-8">
+                <WelcomeScreen />
+              </div>
             )}
           </div>
         )}
@@ -101,11 +104,11 @@ function WelcomeScreen() {
 
       <div className="space-y-3">
         <h1 className="text-3xl font-bold text-foreground">
-          Welcome to Polaris UI Explorer
+          Welcome to Lucidex UI
         </h1>
         <p className="text-lg leading-relaxed text-muted-foreground">
-          Explore and interact with components from the Qatar GBA Design System.
-          Select a component from the sidebar to get started.
+          Bring clarity to your design system with cross-framework component exploration.
+          Select a component from the sidebar to get started with instant code generation.
         </p>
       </div>
 
@@ -145,31 +148,70 @@ function WelcomeScreen() {
 }
 
 function ComponentPreview({ component }: { component: string }) {
-  return (
-    <div className="w-full max-w-4xl space-y-6">
-      <div className="space-y-2 text-center">
-        <h2 className="text-2xl font-bold text-foreground">{component}</h2>
-        <p className="text-muted-foreground">
-          Interactive preview and documentation for the {component} component
-        </p>
-      </div>
-
-      {/* Preview Area */}
-      <div className="flex min-h-[400px] items-center justify-center rounded-lg border border-border bg-background">
-        <div className="space-y-4 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-lg bg-gradient-to-br from-qgba-gold/20 to-qgba-maroon/20">
-            <div className="h-8 w-8 rounded-md bg-qgba-gold opacity-60"></div>
+  // Generate sample content based on component type
+  const getSampleContent = (componentName: string) => {
+    const samples = {
+      Button: `
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button style="background: #B8860B; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+            Primary Button
+          </button>
+          <button style="background: transparent; color: #B8860B; border: 2px solid #B8860B; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+            Secondary Button
+          </button>
+          <button style="background: #f5f5f5; color: #666; border: 1px solid #ddd; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+            Disabled Button
+          </button>
+        </div>
+      `,
+      Card: `
+        <div style="max-width: 320px; background: white; border: 1px solid #e5e5e5; border-radius: 8px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+          <h3 style="margin: 0 0 8px 0; color: #1a1a1a; font-size: 18px; font-weight: 600;">Card Title</h3>
+          <p style="margin: 0 0 16px 0; color: #666; font-size: 14px; line-height: 1.4;">
+            This is a sample card component with some content to demonstrate the preview system.
+          </p>
+          <button style="background: #B8860B; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+            Action
+          </button>
+        </div>
+      `,
+      Input: `
+        <div style="max-width: 280px; space-y: 12px;">
+          <div>
+            <label style="display: block; margin-bottom: 4px; color: #374151; font-size: 14px; font-weight: 500;">Email</label>
+            <input type="email" placeholder="Enter your email" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;" />
           </div>
-          <div className="space-y-2">
-            <h3 className="text-lg font-medium text-foreground">
-              {component} Preview
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Component preview will be rendered here
-            </p>
+          <div style="margin-top: 16px;">
+            <label style="display: block; margin-bottom: 4px; color: #374151; font-size: 14px; font-weight: 500;">Message</label>
+            <textarea placeholder="Your message..." rows="3" style="width: 100%; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; resize: vertical;"></textarea>
           </div>
         </div>
-      </div>
+      `,
+      default: `
+        <div style="display: flex; flex-direction: column; align-items: center; padding: 40px 20px; text-align: center;">
+          <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #B8860B, #8B0000); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+            <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.8); border-radius: 6px;"></div>
+          </div>
+          <h3 style="margin: 0 0 8px 0; color: #1a1a1a; font-size: 20px; font-weight: 600;">${component}</h3>
+          <p style="margin: 0; color: #666; font-size: 14px;">
+            Interactive preview for the ${component} component will be rendered here.
+          </p>
+        </div>
+      `,
+    };
+
+    return samples[componentName as keyof typeof samples] || samples.default;
+  };
+
+  return (
+    <div className="h-full w-full">
+      <PreviewSystem
+        content={getSampleContent(component)}
+        title={component}
+        description={`Interactive preview and documentation for the ${component} component`}
+        framework="react"
+        showHeader={true}
+      />
     </div>
   );
 }

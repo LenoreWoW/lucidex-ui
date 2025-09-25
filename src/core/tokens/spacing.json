@@ -1,0 +1,130 @@
+{
+  "spacing": {
+    "0": {
+      "name": "None",
+      "description": "No spacing",
+      "value": "0",
+      "px": "0px",
+      "rem": "0rem",
+      "variable": "--spacing-0",
+      "category": "spacing"
+    },
+    "1": {
+      "name": "Extra Small",
+      "description": "Very small spacing for tight layouts",
+      "value": "0.25rem",
+      "px": "4px",
+      "rem": "0.25rem",
+      "variable": "--spacing-1",
+      "category": "spacing"
+    },
+    "2": {
+      "name": "Small",
+      "description": "Small spacing for compact layouts",
+      "value": "0.5rem",
+      "px": "8px",
+      "rem": "0.5rem",
+      "variable": "--spacing-2",
+      "category": "spacing"
+    },
+    "3": {
+      "name": "Medium Small",
+      "description": "Medium small spacing",
+      "value": "0.75rem",
+      "px": "12px",
+      "rem": "0.75rem",
+      "variable": "--spacing-3",
+      "category": "spacing"
+    },
+    "4": {
+      "name": "Medium",
+      "description": "Standard medium spacing",
+      "value": "1rem",
+      "px": "16px",
+      "rem": "1rem",
+      "variable": "--spacing-4",
+      "category": "spacing"
+    },
+    "5": {
+      "name": "Medium Large",
+      "description": "Medium large spacing",
+      "value": "1.25rem",
+      "px": "20px",
+      "rem": "1.25rem",
+      "variable": "--spacing-5",
+      "category": "spacing"
+    },
+    "6": {
+      "name": "Large",
+      "description": "Large spacing for generous layouts",
+      "value": "1.5rem",
+      "px": "24px",
+      "rem": "1.5rem",
+      "variable": "--spacing-6",
+      "category": "spacing"
+    },
+    "7": {
+      "name": "Extra Large",
+      "description": "Extra large spacing",
+      "value": "1.75rem",
+      "px": "28px",
+      "rem": "1.75rem",
+      "variable": "--spacing-7",
+      "category": "spacing"
+    },
+    "8": {
+      "name": "Double Large",
+      "description": "Double large spacing",
+      "value": "2rem",
+      "px": "32px",
+      "rem": "2rem",
+      "variable": "--spacing-8",
+      "category": "spacing"
+    },
+    "10": {
+      "name": "Triple Large",
+      "description": "Triple large spacing",
+      "value": "2.5rem",
+      "px": "40px",
+      "rem": "2.5rem",
+      "variable": "--spacing-10",
+      "category": "spacing"
+    },
+    "12": {
+      "name": "Extra Extra Large",
+      "description": "Very large spacing for major sections",
+      "value": "3rem",
+      "px": "48px",
+      "rem": "3rem",
+      "variable": "--spacing-12",
+      "category": "spacing"
+    },
+    "16": {
+      "name": "Super Large",
+      "description": "Super large spacing for major divisions",
+      "value": "4rem",
+      "px": "64px",
+      "rem": "4rem",
+      "variable": "--spacing-16",
+      "category": "spacing"
+    },
+    "20": {
+      "name": "Massive",
+      "description": "Massive spacing for page-level divisions",
+      "value": "5rem",
+      "px": "80px",
+      "rem": "5rem",
+      "variable": "--spacing-20",
+      "category": "spacing"
+    },
+    "24": {
+      "name": "Giant",
+      "description": "Giant spacing for major page sections",
+      "value": "6rem",
+      "px": "96px",
+      "rem": "6rem",
+      "variable": "--spacing-24",
+      "category": "spacing"
+    }
+  }
+}

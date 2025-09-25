@@ -1,0 +1,80 @@
+{
+  "borderRadius": {
+    "none": {
+      "name": "No Radius",
+      "description": "No border radius - sharp corners",
+      "value": "0",
+      "px": "0px",
+      "variable": "--radius-none",
+      "category": "border-radius"
+    },
+    "sm": {
+      "name": "Small Radius",
+      "description": "Small border radius",
+      "value": "calc(var(--radius) - 4px)",
+      "fallback": "0.125rem",
+      "px": "2px",
+      "variable": "--radius-sm",
+      "category": "border-radius"
+    },
+    "base": {
+      "name": "Base Radius",
+      "description": "Base border radius",
+      "value": "var(--radius)",
+      "fallback": "0.5rem",
+      "px": "8px",
+      "variable": "--radius",
+      "category": "border-radius"
+    },
+    "md": {
+      "name": "Medium Radius",
+      "description": "Medium border radius",
+      "value": "calc(var(--radius) - 2px)",
+      "fallback": "0.375rem",
+      "px": "6px",
+      "variable": "--radius-md",
+      "category": "border-radius"
+    },
+    "lg": {
+      "name": "Large Radius",
+      "description": "Large border radius",
+      "value": "var(--radius)",
+      "fallback": "0.5rem",
+      "px": "8px",
+      "variable": "--radius-lg",
+      "category": "border-radius"
+    },
+    "xl": {
+      "name": "Extra Large Radius",
+      "description": "Extra large border radius",
+      "value": "0.75rem",
+      "px": "12px",
+      "variable": "--radius-xl",
+      "category": "border-radius"
+    },
+    "2xl": {
+      "name": "2X Large Radius",
+      "description": "Very large border radius",
+      "value": "1rem",
+      "px": "16px",
+      "variable": "--radius-2xl",
+      "category": "border-radius"
+    },
+    "3xl": {
+      "name": "3X Large Radius",
+      "description": "Extra large border radius",
+      "value": "1.5rem",
+      "px": "24px",
+      "variable": "--radius-3xl",
+      "category": "border-radius"
+    },
+    "full": {
+      "name": "Full Radius",
+      "description": "Fully rounded - pill shape",
+      "value": "9999px",
+      "px": "9999px",
+      "variable": "--radius-full",
+      "category": "border-radius"
+    }
+  }
+}

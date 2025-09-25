@@ -3,6 +3,7 @@
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { announceToScreenReader, KeyCodes } from '@/lib/accessibility';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -20,14 +21,31 @@ export function ThemeToggle() {
 
   const isDark = theme === 'dark';
 
+  const handleThemeToggle = () => {
+    const newTheme = isDark ? 'light' : 'dark';
+    setTheme(newTheme);
+    announceToScreenReader(`Switched to ${newTheme} theme`, 'polite');
+  };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === KeyCodes.ENTER || event.key === KeyCodes.SPACE) {
+      event.preventDefault();
+      handleThemeToggle();
+    }
+  };
+
   return (
     <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="group relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground"
-      title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+      onClick={handleThemeToggle}
+      onKeyDown={handleKeyDown as any}
+      className="group relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-qgba-gold focus:ring-offset-2"
+      title={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      aria-pressed={isDark}
+      role="switch"
+      aria-describedby="theme-toggle-description"
     >
-      <div className="relative h-4 w-4">
+      <div className="relative h-4 w-4" aria-hidden="true">
         <Sun
           className={`absolute inset-0 h-4 w-4 transition-all duration-300 ease-in-out ${
             isDark
@@ -43,7 +61,9 @@ export function ThemeToggle() {
           }`}
         />
       </div>
-      <span className="sr-only">Toggle theme</span>
+      <span id="theme-toggle-description" className="sr-only">
+        Toggle between light and dark themes. Current theme: {isDark ? 'dark' : 'light'} mode.
+      </span>
     </button>
   );
 }
