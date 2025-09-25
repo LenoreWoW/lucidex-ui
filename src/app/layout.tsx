@@ -6,12 +6,7 @@ import { ToastProvider } from '@/components/ui';
 import { SkipNavigation } from '@/components/accessibility/SkipNavigation';
 import { AccessibilityChecker } from '@/components/accessibility/AccessibilityChecker';
 import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider';
-import dynamic from 'next/dynamic';
-
-const ServiceWorkerRegistration = dynamic(
-  () => import('@/components/ServiceWorkerRegistration').then(mod => ({ default: mod.ServiceWorkerRegistration })),
-  { ssr: false }
-);
+import { ClientServiceWorker } from '@/components/ClientServiceWorker';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -68,7 +63,7 @@ export default function RootLayout({
           </ThemeProvider>
           <AccessibilityChecker />
         </AccessibilityProvider>
-        <ServiceWorkerRegistration />
+        <ClientServiceWorker />
       </body>
     </html>
   );

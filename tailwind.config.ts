@@ -30,11 +30,22 @@ const config: Config = {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         radius: 'var(--radius)',
-        // Qatar GBA Design System Colors
+        // Qatar GBA Design System Official Colors
         qgba: {
-          maroon: 'hsl(var(--qgba-maroon))',
-          gold: 'hsl(var(--qgba-gold))',
-          navy: 'hsl(var(--qgba-navy))',
+          // Official Color Palette
+          'al-adaam': 'hsl(var(--qgba-al-adaam))', // #8A1538 - Primary
+          'dune': 'hsl(var(--qgba-dune))', // #A29475
+          'black': 'hsl(var(--qgba-black))', // #000000
+          'white': 'hsl(var(--qgba-white))', // #FFFFFF
+          'skyline': 'hsl(var(--qgba-skyline))', // #0d4261
+          'palm': 'hsl(var(--qgba-palm))', // #129b82
+          'sea': 'hsl(var(--qgba-sea))', // #4194b3
+          'sunrise': 'hsl(var(--qgba-sunrise))', // #fdf39d
+
+          // Legacy aliases for backward compatibility
+          'maroon': 'hsl(var(--qgba-maroon))',
+          'gold': 'hsl(var(--qgba-gold))',
+          'navy': 'hsl(var(--qgba-navy))',
           'light-gray': 'hsl(var(--qgba-light-gray))',
           'dark-gray': 'hsl(var(--qgba-dark-gray))',
         },

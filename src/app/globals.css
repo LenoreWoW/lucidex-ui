@@ -6,62 +6,82 @@
 
 @layer base {
   :root {
-    /* Light theme - Qatar GBA inspired colors */
+    /* Light theme - Qatar GBA Official Colors */
     --background: 0 0% 100%;
     --foreground: 0 0% 9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
-    --primary: 0 65% 51%; /* Qatar maroon */
+    --primary: 342 76% 31%; /* Al Adaam #8A1538 */
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
+    --secondary: 41 20% 55%; /* Dune #A29475 */
     --secondary-foreground: 0 0% 9%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 0 0% 9%;
+    --muted: 41 20% 95%;
+    --muted-foreground: 41 20% 46%;
+    --accent: 196 47% 48%; /* Sea #4194b3 */
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 0 65% 51%;
+    --border: 41 20% 85%;
+    --input: 41 20% 85%;
+    --ring: 342 76% 31%;
     --radius: 0.5rem;
 
-    /* Qatar GBA Design System Color Tokens */
-    --qgba-maroon: 0 65% 51%; /* #8B1538 - Qatar Maroon */
-    --qgba-gold: 45 100% 50%; /* #FFD700 - Qatar Gold */
-    --qgba-navy: 215 58% 24%; /* #1E3A5F - Qatar Navy */
-    --qgba-light-gray: 0 0% 94%; /* #F0F0F0 - Light Gray */
-    --qgba-dark-gray: 0 0% 33%; /* #545454 - Dark Gray */
+    /* Qatar GBA Design System Official Color Tokens */
+    --qgba-al-adaam: 342 76% 31%; /* #8A1538 - Al Adaam (Primary) */
+    --qgba-dune: 41 20% 55%; /* #A29475 - Dune */
+    --qgba-black: 0 0% 0%; /* #000000 - Black */
+    --qgba-white: 0 0% 100%; /* #FFFFFF - White */
+    --qgba-skyline: 202 76% 22%; /* #0d4261 - Skyline */
+    --qgba-palm: 169 100% 31%; /* #129b82 - Palm */
+    --qgba-sea: 196 47% 48%; /* #4194b3 - Sea */
+    --qgba-sunrise: 54 95% 81%; /* #fdf39d - Sunrise */
+
+    /* Legacy aliases for compatibility */
+    --qgba-maroon: 342 76% 31%; /* Al Adaam */
+    --qgba-gold: 54 95% 81%; /* Sunrise */
+    --qgba-navy: 202 76% 22%; /* Skyline */
+    --qgba-light-gray: 0 0% 94%;
+    --qgba-dark-gray: 0 0% 33%;
   }
 
   .dark {
-    /* Dark theme - Qatar GBA inspired colors */
+    /* Dark theme - Qatar GBA Official Colors (Dark Mode Variants) */
     --background: 0 0% 7%;
     --foreground: 0 0% 98%;
     --card: 0 0% 9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 65% 60%; /* Lighter Qatar maroon for dark mode */
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --primary: 342 76% 45%; /* Al Adaam - Lighter for dark mode */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 41 20% 65%; /* Dune - Lighter for dark mode */
+    --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 15%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 196 47% 58%; /* Sea - Lighter for dark mode */
+    --accent-foreground: 0 0% 9%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 0 65% 60%;
+    --ring: 342 76% 45%;
 
-    /* Qatar GBA Design System Color Tokens - Dark Theme */
-    --qgba-maroon: 0 65% 60%; /* Lighter maroon for dark mode */
-    --qgba-gold: 45 95% 55%; /* Slightly dimmed gold for dark mode */
-    --qgba-navy: 215 58% 35%; /* Lighter navy for dark mode */
+    /* Qatar GBA Design System Official Color Tokens - Dark Theme */
+    --qgba-al-adaam: 342 76% 45%; /* Al Adaam - Lighter for dark mode */
+    --qgba-dune: 41 20% 65%; /* Dune - Lighter for dark mode */
+    --qgba-black: 0 0% 0%; /* Black remains the same */
+    --qgba-white: 0 0% 100%; /* White remains the same */
+    --qgba-skyline: 202 76% 35%; /* Skyline - Lighter for dark mode */
+    --qgba-palm: 169 100% 45%; /* Palm - Lighter for dark mode */
+    --qgba-sea: 196 47% 58%; /* Sea - Lighter for dark mode */
+    --qgba-sunrise: 54 95% 75%; /* Sunrise - Slightly dimmed for dark mode */
+
+    /* Legacy aliases for compatibility - Dark Theme */
+    --qgba-maroon: 342 76% 45%; /* Al Adaam - Dark mode */
+    --qgba-gold: 54 95% 75%; /* Sunrise - Dark mode */
+    --qgba-navy: 202 76% 35%; /* Skyline - Dark mode */
     --qgba-light-gray: 0 0% 20%; /* Darker gray for dark mode */
     --qgba-dark-gray: 0 0% 70%; /* Lighter gray for dark mode */
   }
