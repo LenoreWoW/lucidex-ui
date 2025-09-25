@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme - Qatar GBA inspired colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 0 65% 51%; /* Qatar maroon */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 0 65% 51%;
+    --radius: 0.5rem;
+
+    /* Qatar GBA Design System Color Tokens */
+    --qgba-maroon: 0 65% 51%; /* #8B1538 - Qatar Maroon */
+    --qgba-gold: 45 100% 50%; /* #FFD700 - Qatar Gold */
+    --qgba-navy: 215 58% 24%; /* #1E3A5F - Qatar Navy */
+    --qgba-light-gray: 0 0% 94%; /* #F0F0F0 - Light Gray */
+    --qgba-dark-gray: 0 0% 33%; /* #545454 - Dark Gray */
+  }
+
+  .dark {
+    /* Dark theme - Qatar GBA inspired colors */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 65% 60%; /* Lighter Qatar maroon for dark mode */
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 65% 60%;
+
+    /* Qatar GBA Design System Color Tokens - Dark Theme */
+    --qgba-maroon: 0 65% 60%; /* Lighter maroon for dark mode */
+    --qgba-gold: 45 95% 55%; /* Slightly dimmed gold for dark mode */
+    --qgba-navy: 215 58% 35%; /* Lighter navy for dark mode */
+    --qgba-light-gray: 0 0% 20%; /* Darker gray for dark mode */
+    --qgba-dark-gray: 0 0% 70%; /* Lighter gray for dark mode */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+
+  /* Smooth transitions for theme switching */
+  * {
+    transition-property:
+      color, background-color, border-color, outline-color,
+      text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
