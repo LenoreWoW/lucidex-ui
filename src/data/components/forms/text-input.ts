@@ -787,7 +787,7 @@ describe('TextInput', () => {
     ],
   },
 
-  thumbnail: '/thumbnails/text-input.png',
+  thumbnail: '/thumbnails/text-input.svg',
   screenshots: [
     '/screenshots/text-input-default.png',
     '/screenshots/text-input-error.png',

@@ -702,7 +702,7 @@ describe('PrimaryButton', () => {
   },
 
   // Media and Assets
-  thumbnail: '/thumbnails/primary-button.png',
+  thumbnail: '/thumbnails/primary-button.svg',
   screenshots: [
     '/screenshots/primary-button-default.png',
     '/screenshots/primary-button-hover.png',

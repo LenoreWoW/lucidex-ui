@@ -1,0 +1,16 @@
+<svg width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="120" fill="#f8f9fa" stroke="#e9ecef" stroke-width="1"/>
+
+  <!-- Input field -->
+  <rect x="30" y="35" width="140" height="40" rx="6" fill="#ffffff" stroke="#A29475" stroke-width="2"/>
+
+  <!-- Placeholder text -->
+  <text x="40" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#6c757d">Enter your text...</text>
+
+  <!-- Label -->
+  <text x="30" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="500" fill="#333">Text Input</text>
+
+  <!-- Component label -->
+  <text x="100" y="95" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#6c757d" text-anchor="middle">Text Input Component</text>
+</svg>

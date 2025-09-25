@@ -49,6 +49,10 @@ const config: Config = {
           'light-gray': 'hsl(var(--qgba-light-gray))',
           'dark-gray': 'hsl(var(--qgba-dark-gray))',
         },
+        // Component-specific color classes
+        'qatar-maroon': 'hsl(var(--qgba-al-adaam))', // For existing component compatibility
+        'qatar-dune': 'hsl(var(--qgba-dune))',
+        'qatar-navy': 'hsl(var(--qgba-skyline))',
       },
       borderRadius: {
         lg: 'var(--radius)',

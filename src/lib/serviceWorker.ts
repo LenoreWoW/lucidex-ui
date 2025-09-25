@@ -22,30 +22,36 @@ const isLocalhost = typeof window !== 'undefined' ? Boolean(
 export function registerServiceWorker(config?: ServiceWorkerConfig) {
   if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
 
-  if ('serviceWorker' in navigator) {
-    const publicUrl = new URL(
-      process.env.PUBLIC_URL || '/',
-      window.location.href
-    );
+  if (!('serviceWorker' in navigator)) {
+    console.warn('Service Worker not supported in this browser');
+    return;
+  }
 
-    if (publicUrl.origin !== window.location.origin) {
-      return;
-    }
+  try {
+    // Construct service worker URL more reliably
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.PUBLIC_URL || '';
+    const swPath = '/sw.js';
+    const swUrl = `${baseUrl}${swPath}`;
+
+    console.log(`Attempting to register Service Worker at: ${swUrl}`);
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
-
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service worker.'
           );
+        }).catch(error => {
+          console.warn('Service Worker ready check failed:', error);
         });
       } else {
         registerValidServiceWorker(swUrl, config);
       }
     });
+  } catch (error) {
+    console.error('Service Worker registration setup failed:', error);
+    config?.onError?.(error as Error);
   }
 }
 
@@ -80,24 +86,34 @@ async function checkValidServiceWorker(swUrl: string, config?: ServiceWorkerConf
   try {
     const response = await fetch(swUrl, {
       headers: { 'Service-Worker': 'script' },
+      cache: 'no-cache'
     });
 
     const contentType = response.headers.get('content-type');
 
-    if (
-      response.status === 404 ||
-      (contentType != null && contentType.indexOf('javascript') === -1)
-    ) {
+    if (response.status === 404) {
+      console.warn(`Service Worker not found at ${swUrl}. This is normal in development.`);
+      config?.onError?.(new Error('Service Worker file not found'));
+      return;
+    }
+
+    if (contentType != null && contentType.indexOf('javascript') === -1) {
+      console.error('Service Worker file is not a JavaScript file');
       const registration = await navigator.serviceWorker.ready;
       await registration.unregister();
       if (typeof window !== 'undefined') {
         window.location.reload();
       }
-    } else {
-      registerValidServiceWorker(swUrl, config);
+      return;
     }
+
+    // If we get here, the service worker file is valid
+    registerValidServiceWorker(swUrl, config);
   } catch (error) {
-    console.log('No internet connection found. App running in offline mode.');
+    console.log('Service Worker validation failed. This may be due to network issues or file not being available in development.');
+    if (config?.onError) {
+      config.onError(error as Error);
+    }
   }
 }
 
